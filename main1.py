@@ -2,13 +2,13 @@ import streamlit as st
 import numpy as np
 from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
-import requests
 from tensorflow import keras
 import matplotlib.pyplot as plt
 from tensorflow.keras import backend as K
 from PIL import Image
 import os
 import urllib.request
+from security import safe_requests
 
 # recall 
 def recall_m(y_true, y_pred):
@@ -54,7 +54,7 @@ def predict(img):
 
 
 def load_lottieurl(url: str):
-    r = requests.get(url)
+    r = safe_requests.get(url)
     if r.status_code != 200:
         return None
     return r.json()
